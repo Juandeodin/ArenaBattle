@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset y base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, #1a1510 0%, #2d2318 50%, #1a1510 100%);
+  min-height: 100vh;
+  color: #f5e6d3;
+}
+
+/* Fuente romana para títulos */
+.font-roman {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+}
+
+/* Scrollbar estilizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #3d3024;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4a35a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffd700;
+}
+
+/* Utilidades de componentes */
+@layer components {
+  /* Botón principal dorado */
+  .btn-gold {
+    @apply px-6 py-3 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 
+           text-arena-900 font-roman font-bold text-lg rounded-lg
+           border-2 border-gold-300 shadow-lg
+           hover:from-gold-400 hover:via-gold-300 hover:to-gold-400
+           hover:shadow-gold-400/50 hover:shadow-xl
+           transition-all duration-300 transform hover:scale-105
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+  }
+
+  /* Botón secundario */
+  .btn-stone {
+    @apply px-6 py-3 bg-gradient-to-r from-arena-800 via-arena-700 to-arena-800
+           text-arena-100 font-roman font-semibold rounded-lg
+           border-2 border-arena-500 shadow-md
+           hover:border-gold-400 hover:text-gold-400
+           transition-all duration-300;
+  }
+
+  /* Input estilizado */
+  .input-arena {
+    @apply w-full px-4 py-3 bg-arena-900/50 border-2 border-arena-600
+           rounded-lg text-arena-100 placeholder-arena-400
+           focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-400/30
+           transition-all duration-300;
+  }
+
+  /* Textarea estilizado */
+  .textarea-arena {
+    @apply w-full px-4 py-3 bg-arena-900/50 border-2 border-arena-600
+           rounded-lg text-arena-100 placeholder-arena-400 resize-none
+           focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-400/30
+           transition-all duration-300;
+  }
+
+  /* Card de piedra */
+  .card-stone {
+    @apply bg-gradient-to-br from-arena-900 via-arena-800 to-arena-900
+           border-2 border-arena-600 rounded-xl shadow-xl
+           backdrop-blur-sm;
+  }
+
+  /* Card dorada (destacada) */
+  .card-gold {
+    @apply bg-gradient-to-br from-arena-900 via-arena-800 to-arena-900
+           border-2 border-gold-400 rounded-xl shadow-xl
+           shadow-gold-400/20;
+  }
+
+  /* Texto dorado con brillo */
+  .text-gold-glow {
+    @apply text-gold-400 drop-shadow-[0_0_10px_rgba(255,215,0,0.5)];
+  }
+
+  /* Badge para habilidades */
+  .badge-ability {
+    @apply px-3 py-1 bg-blood-500/30 border border-blood-400/50
+           rounded-full text-sm text-blood-300 font-medium;
+  }
+
+  /* Panel de narración */
+  .narration-panel {
+    @apply p-6 bg-arena-900/80 border-2 border-gold-400/50 rounded-xl
+           font-roman text-xl leading-relaxed text-arena-100
+           shadow-inner shadow-gold-400/10;
+  }
+}
+
+/* Animaciones */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Efecto de texto typewriter */
+.typewriter-effect {
+  overflow: hidden;
+  border-right: 2px solid #ffd700;
+  white-space: nowrap;
+  animation: 
+    typing 3s steps(40, end),
+    blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ffd700 }
+}
+
+/* Patrón de fondo del coliseo */
+.coliseum-bg {
+  background-image: 
+    radial-gradient(ellipse at center, rgba(196, 163, 90, 0.1) 0%, transparent 70%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 50px,
+      rgba(196, 163, 90, 0.05) 50px,
+      rgba(196, 163, 90, 0.05) 51px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 50px,
+      rgba(196, 163, 90, 0.05) 50px,
+      rgba(196, 163, 90, 0.05) 51px
+    );
+}
+
+/* Borde decorativo romano */
+.roman-border {
+  border-image: linear-gradient(
+    135deg,
+    #c4a35a 0%,
+    #ffd700 25%,
+    #c4a35a 50%,
+    #ffd700 75%,
+    #c4a35a 100%
+  ) 1;
+}
