@@ -138,6 +138,7 @@ export interface ClientToServerEvents {
   'room:leave': () => void;
   'gladiator:create': (gladiator: CreateGladiatorDto) => void;
   'game:start': () => void;
+  'game:continue': () => void;
   'bet:place': (gladiatorId: string, amount: number) => void;
   'bet:skip': () => void;
 }

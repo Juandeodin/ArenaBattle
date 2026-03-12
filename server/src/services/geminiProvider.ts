@@ -3,7 +3,7 @@ import { IAIProvider, buildPrompt, parseAIResponse } from './aiProvider';
 
 export class GeminiProvider implements IAIProvider {
   private client: GoogleGenerativeAI;
-  private model: string = 'gemini-1.5-flash';
+  private model: string = 'gemini-2.5-flash';
 
   constructor(apiKey: string) {
     this.client = new GoogleGenerativeAI(apiKey);

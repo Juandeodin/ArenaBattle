@@ -8,7 +8,8 @@ import {
   Trophy,
   Flame,
   Shield,
-  Zap
+  Zap,
+  ArrowRight
 } from 'lucide-react';
 
 export default function Arena() {
@@ -20,6 +21,7 @@ export default function Arena() {
     countdown, 
     lastPayouts,
     placeBet,
+    continueGame,
     error 
   } = useGame();
 
@@ -218,6 +220,27 @@ export default function Arena() {
                     </span>
                   </div>
                 ))}
+              </div>
+            )}
+
+            {/* Botón continuar (solo host en resultados) */}
+            {isResults && currentPlayer?.isHost && (
+              <div className="mt-4">
+                <button
+                  onClick={continueGame}
+                  className="btn-gold w-full flex items-center justify-center gap-2"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                  Siguiente Combate
+                </button>
+              </div>
+            )}
+
+            {isResults && !currentPlayer?.isHost && (
+              <div className="mt-4 text-center p-3 bg-arena-800/50 rounded-lg">
+                <p className="text-arena-400 text-sm">
+                  Esperando al host para continuar...
+                </p>
               </div>
             )}
           </div>

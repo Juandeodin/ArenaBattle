@@ -39,13 +39,17 @@ export function buildPrompt(
   gladiator1: { name: string; description: string; abilities: string[] },
   gladiator2: { name: string; description: string; abilities: string[] }
 ): string {
+  // Filtrar habilidades undefined/null/vacías y asegurar valores válidos
+  const g1Abilities = gladiator1.abilities.filter(a => a && a.trim()).join(', ') || 'combate básico';
+  const g2Abilities = gladiator2.abilities.filter(a => a && a.trim()).join(', ') || 'combate básico';
+  
   return COMBAT_PROMPT
-    .replace('{gladiator1_name}', gladiator1.name)
-    .replace('{gladiator1_description}', gladiator1.description)
-    .replace('{gladiator1_abilities}', gladiator1.abilities.join(', '))
-    .replace('{gladiator2_name}', gladiator2.name)
-    .replace('{gladiator2_description}', gladiator2.description)
-    .replace('{gladiator2_abilities}', gladiator2.abilities.join(', '));
+    .replace('{gladiator1_name}', gladiator1.name || 'Gladiador 1')
+    .replace('{gladiator1_description}', gladiator1.description || 'Un guerrero valiente')
+    .replace('{gladiator1_abilities}', g1Abilities)
+    .replace('{gladiator2_name}', gladiator2.name || 'Gladiador 2')
+    .replace('{gladiator2_description}', gladiator2.description || 'Un guerrero valiente')
+    .replace('{gladiator2_abilities}', g2Abilities);
 }
 
 export function parseAIResponse(response: string): { narration: string; winner: 1 | 2 } {

@@ -60,6 +60,10 @@ export class GameManager {
       await this.handleSkipBet(socket);
     });
 
+    socket.on('game:continue', async () => {
+      await this.handleContinueGame(socket);
+    });
+
     socket.on('disconnect', async () => {
       await this.handleDisconnect(socket);
     });
@@ -417,10 +421,36 @@ export class GameManager {
     this.io.to(roomCode).emit('match:result', toMatchPublicInfo(room.currentMatch), payouts);
     this.broadcastGameState(roomCode);
 
-    // Esperar unos segundos antes del siguiente combate
+    // No avanzar automáticamente, esperar a que el host presione continuar
+    // Timeout de seguridad de 60 segundos si el host no hace nada
     setTimeout(async () => {
-      await this.startNextMatch(roomCode);
-    }, 5000);
+      const currentRoom = await repo.getRoom(roomCode);
+      if (currentRoom && currentRoom.status === 'results') {
+        await this.startNextMatch(roomCode);
+      }
+    }, 60000);
+  }
+
+  private async handleContinueGame(socket: Socket<ClientToServerEvents, ServerToClientEvents>) {
+    const repo = getRepository();
+    const { player, room } = await this.getPlayerAndRoom(socket);
+
+    if (!player || !room) {
+      socket.emit('game:error', 'No estás en una sala');
+      return;
+    }
+
+    if (!player.isHost) {
+      socket.emit('game:error', 'Solo el host puede continuar');
+      return;
+    }
+
+    if (room.status !== 'results') {
+      socket.emit('game:error', 'No hay resultados que continuar');
+      return;
+    }
+
+    await this.startNextMatch(room.code);
   }
 
   private async getPlayerAndRoom(socket: Socket<ClientToServerEvents, ServerToClientEvents>) {

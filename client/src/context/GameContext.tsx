@@ -22,6 +22,7 @@ interface GameContextType {
   leaveRoom: () => void;
   createGladiator: (name: string, description: string, abilities: string[]) => void;
   startGame: () => void;
+  continueGame: () => void;
   placeBet: (gladiatorId: string, amount: number) => void;
   clearError: () => void;
 }
@@ -174,6 +175,11 @@ export function GameProvider({ children }: { children: ReactNode }) {
     socketService.startGame();
   }, []);
 
+  // Continuar al siguiente combate
+  const continueGame = useCallback(() => {
+    socketService.continueGame();
+  }, []);
+
   // Realizar apuesta
   const placeBet = useCallback((gladiatorId: string, amount: number) => {
     socketService.placeBet(gladiatorId, amount);
@@ -198,6 +204,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     leaveRoom,
     createGladiator,
     startGame,
+    continueGame,
     placeBet,
     clearError,
   };
