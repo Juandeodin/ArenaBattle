@@ -394,17 +394,6 @@ Las contribuciones son bienvenidas. Por favor:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-### Reglas Importantes
-
-⚠️ **Antes de hacer cualquier cambio, lee el archivo `context.md`**
-
-Cuando realices cambios:
-- Actualiza `context.md` con las modificaciones
-- Mantén coherencia con la arquitectura existente
-- Sigue los patrones de código establecidos
-- Documenta nuevas funcionalidades
-
----
 
 ## 📄 Licencia
 
