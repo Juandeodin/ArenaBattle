@@ -13,24 +13,6 @@
 
 ---
 
-## 📜 Descripción
-
-**Arena Battle** es un juego web multijugador ambientado en un coliseo romano donde 2-16 jugadores crean sus propios gladiadores, apuestan en combates 1vs1 y compiten en torneos de eliminación. Los combates son narrados de forma épica por inteligencia artificial (Gemini, OpenAI, o Anthropic) en tiempo real.
-
-El objetivo es simple: **¡Acumula más monedas que tus oponentes y conviértete en el campeón del coliseo!**
-
-### ✨ Características Principales
-
-- 🎮 **Multijugador en tiempo real** con Socket.io
-- 🤖 **Narración de combates por IA** con 3 proveedores intercambiables
-- 🎲 **Sistema de apuestas** con distribución proporcional y bonus
-- 🏆 **Torneos de eliminación** con bracket dinámico (2-16 jugadores)
-- 🎨 **Tema visual coliseo romano** con animaciones y efectos
-- 🔄 **Sistema de reconexión** automática
-- 💰 **Empates múltiples** permitidos (varios ganadores)
-
----
-
 ## 🛠️ Stack Tecnológico
 
 ### Frontend
